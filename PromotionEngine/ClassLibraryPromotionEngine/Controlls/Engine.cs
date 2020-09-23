@@ -24,10 +24,14 @@ namespace ClassLibraryPromotionEngine
         foreach (var promotion in Promotions)
         {
           var validatedItems = promotion.Validate(order, foundItems);
-          if (validatedItems != null && validatedItems.Count() > 0)
-            foundItems.AddRange(validatedItems);
+          UpdateValidatedItems(foundItems, validatedItems);
         }
 
+      ApplyRegularPrice(order, foundItems);
+    }
+
+    private void ApplyRegularPrice(Order order, List<Item> foundItems)
+    {
       foreach (var item in order.Items)
       {
         var validateItem = foundItems.FirstOrDefault(x => x.SKU_Id == item.SKU_Id) ?? item;
@@ -35,6 +39,16 @@ namespace ClassLibraryPromotionEngine
         if (quantity > 0)
           order.TotalAmount += quantity * PriceList.First(x => x.SKU_Id == item.SKU_Id).Price;
       }
+    }
+
+    private static void UpdateValidatedItems(List<Item> foundItems, IEnumerable<Item> validatedItems)
+    {
+      if (validatedItems == null || validatedItems.Count() < 1)
+        return;
+
+      foreach (var item in validatedItems)
+        if (!foundItems.Any(x => x.SKU_Id == item.SKU_Id))
+          foundItems.Add(item);
     }
   }
 }
