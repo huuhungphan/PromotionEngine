@@ -10,10 +10,10 @@ namespace UnitTestPromotionEngine
   {
     static readonly IEnumerable<SKU_Price> PriceList =
       new List<SKU_Price> {
-        new SKU_Price { SKU_Id = 'A', Price = 50 },
-        new SKU_Price { SKU_Id = 'B', Price = 30 },
-        new SKU_Price { SKU_Id = 'C', Price = 20 },
-        new SKU_Price { SKU_Id = 'D', Price = 15 } };
+        new SKU_Price { SKU_Id = 'A', UnitPrice = 50 },
+        new SKU_Price { SKU_Id = 'B', UnitPrice = 30 },
+        new SKU_Price { SKU_Id = 'C', UnitPrice = 20 },
+        new SKU_Price { SKU_Id = 'D', UnitPrice = 15 } };
 
     static readonly IEnumerable<Promotion> Promotions =
       new List<Promotion> {

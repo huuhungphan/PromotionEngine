@@ -9,6 +9,6 @@ namespace ClassLibraryPromotionEngine
   public class SKU_Price
   {
     public char SKU_Id { get; set; }
-    public int Price { get; set; }
+    public int UnitPrice { get; set; }
   }
 }

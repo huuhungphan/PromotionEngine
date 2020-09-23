@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryPromotionEngine
 {
-  public class Promotion
+  public class Promotion : Order
   {
-    public List<Item> Items { get; set; }
-    public int TotalAmount { get; set; }
-
     public IEnumerable<Item> Validate(Order order, IEnumerable<Item> validatedItems)
     {
       var foundItems = new List<Item>();

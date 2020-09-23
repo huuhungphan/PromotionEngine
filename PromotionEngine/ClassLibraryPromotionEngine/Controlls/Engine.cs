@@ -37,7 +37,7 @@ namespace ClassLibraryPromotionEngine
         var validateItem = foundItems.FirstOrDefault(x => x.SKU_Id == item.SKU_Id) ?? item;
         var quantity = validateItem.Quantity;
         if (quantity > 0)
-          order.TotalAmount += quantity * PriceList.First(x => x.SKU_Id == item.SKU_Id).Price;
+          order.TotalAmount += quantity * PriceList.First(x => x.SKU_Id == item.SKU_Id).UnitPrice;
       }
     }
 
