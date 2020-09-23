@@ -17,5 +17,10 @@ namespace ClassLibraryPromotionEngine
 
     public char SKU_Id { get; set; }
     public int Quantity { get; set; }
+
+    public override string ToString()
+    {
+      return $"{SKU_Id} {Quantity}";
+    }
   }
 }

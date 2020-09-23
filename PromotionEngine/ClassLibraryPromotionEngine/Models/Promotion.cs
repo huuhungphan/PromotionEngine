@@ -32,17 +32,24 @@ namespace ClassLibraryPromotionEngine
 
     private void ApplyPromotionPriceAndCalculateRestQuantity(Order order, List<Item> foundItems)
     {
-      var found = true;
-      do
-        foreach (var item in foundItems)
+      var found = foundItems.Count() > 0;
+      if (found)
+      {
+        do
         {
-          var promotionItem = Items.First(x => x.SKU_Id == item.SKU_Id);
-          item.Quantity -= promotionItem.Quantity;
           order.TotalAmount += TotalAmount;
-          if (found)
-            found = promotionItem.Quantity <= item.Quantity;
-        }
-      while (found);
+          foreach (var promotionItem in Items)
+          {
+            var item = foundItems.FirstOrDefault(x => x.SKU_Id == promotionItem.SKU_Id);
+            if (item != null)
+            {
+              item.Quantity -= promotionItem.Quantity;
+              if (found)
+                found = item.Quantity >= promotionItem.Quantity;
+            }
+          }
+        } while (found);
+      }
     }
   }
 }
