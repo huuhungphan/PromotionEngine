@@ -33,12 +33,38 @@ namespace UnitTestPromotionEngine
     static readonly Engine actualEngine = new Engine(PriceList, Promotions);
 
     [TestMethod]
-    public void Test_Senario_A()
+    public void Test_Scenario_A()
     {
+      var order =
+        new Order
+        {
+          Items = new List<Item>
+          {
+            new Item { SKU_Id = 'A', Quantity = 1 },
+            new Item { SKU_Id = 'B', Quantity = 1 },
+            new Item { SKU_Id = 'C', Quantity = 1 } },
+          TotalAmount = 0
+        };
+
+      actualEngine.CheckOut(order);
+      Assert.IsTrue(order.TotalAmount == 100);
     }
+
     [TestMethod]
-    public void Test_Senario_B()
+    public void Test_Scenario_B()
     {
+      var order =
+        new Order
+        {
+          Items = new List<Item>
+          {
+            new Item { SKU_Id = 'A', Quantity = 5 },
+            new Item { SKU_Id = 'B', Quantity = 5 },
+            new Item { SKU_Id = 'C', Quantity = 1 } }
+        };
+
+      actualEngine.CheckOut(order);
+      Assert.IsTrue(order.TotalAmount == 370);
     }
   }
 }

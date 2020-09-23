@@ -16,5 +16,10 @@ namespace ClassLibraryPromotionEngine
       this.priceList = priceList;
       this.promotions = promotions;
     }
+
+    public void CheckOut(Order order)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
